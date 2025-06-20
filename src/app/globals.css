@@ -12,3 +12,60 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@keyframes whipcolor {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  20% {
+    filter: hue-rotate(80deg);
+  }
+
+  40% {
+    filter: hue-rotate(10deg);
+  }
+
+  60% {
+    filter: hue-rotate(-20deg);
+  }
+
+  60% {
+    filter: hue-rotate(-80deg);
+  }
+
+  80% {
+    filter: hue-rotate(-10deg);
+  }
+
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+.whip-color {
+  animation: whipcolor 6s infinite linear;
+  background-image: -webkit-linear-gradient(0deg, #2a3ffc, #009ee8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.personal-hover:hover {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110%;
+    height: 110%;
+    background-color: rgba(42, 63, 252, 0.3);
+    border-radius: 0.5rem;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+  }
+}
+ .default-dark-bg {
+  background: linear-gradient(90deg,rgba(0, 0, 0, 1) 65%, rgba(10, 9, 21, 1) 90%);
+  width: 100%;
+  padding: 0 2rem;
+ }
