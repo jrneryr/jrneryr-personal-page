@@ -1,12 +1,36 @@
 "use client";
 
 import ModalAboutMe from "@/components/ModalAboultMe";
+import CardProject from "@/components/CardProject";
+import { projectItems } from "@/utils/projectItems";
 import { useRef, useState } from "react";
+import Carousel from "react-multi-carousel";
+
+import "react-multi-carousel/lib/styles.css";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const projectsRef = useRef<HTMLDivElement>(null);
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   function scrollToProjects() {
     projectsRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -106,7 +130,24 @@ export default function Home() {
               </a>
             </p>
 
-            <div></div>
+            <Carousel
+              responsive={responsive}
+              infinite={true}
+              autoPlay={true}
+              autoPlaySpeed={3500}
+              transitionDuration={500}
+              arrows={false}
+            >
+              {projectItems.map((item) => (
+                <CardProject
+                  key={item.id}
+                  name={item.name}
+                  link={item.link}
+                  description={item.description}
+                  background={item.background}
+                />
+              ))}
+            </Carousel>
           </section>
         </div>
       </main>
