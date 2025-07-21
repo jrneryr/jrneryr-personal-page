@@ -27,7 +27,31 @@ export const projectItems = [
     name: "Catalogo de PIV's",
     link: "#",
     description:
-      "Automatização do processo de gestão de cases de sucesso da empresa, visando criação de gráficos e estatísticas que ajudassem na tomada de decisões visando alcançar novos cases",
+      "Automatização do processo de gestão de cases de sucesso da empresa Telefônica educação digital, visando criação de gráficos e estatísticas que ajudassem na tomada de decisões visando alcançar novos cases",
+    background: "https://placehold.co/285x430",
+  },
+  {
+    id: 5,
+    name: "Masketeer",
+    link: "https://github.com/jrneryr/Masketeer",
+    description:
+      "Biblioteca para aplicação de máscaras em inputs, visando facilitar a entrada de dados do usuário.",
+    background: "https://placehold.co/285x430",
+  },
+  {
+    id: 6,
+    name: "Portal RI Cerradinho",
+    link: "https://www.cerradinhobio.com.br/",
+    description:
+      "Portal para gestão de informações e serviços relacionados ao Cerradinho.",
+    background: "https://placehold.co/285x430",
+  },
+  {
+    id: 7,
+    name: "Portal RI Cerradinho",
+    link: "https://ri.grupovamos.com.br/",
+    description:
+      "Portal para gestão de informações e serviços relacionados ao Grupo Vamos.",
     background: "https://placehold.co/285x430",
   },
 ];

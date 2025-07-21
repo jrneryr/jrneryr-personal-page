@@ -3,7 +3,8 @@
 import ModalAboutMe from "@/components/ModalAboultMe";
 import CardProject from "@/components/CardProject";
 import { projectItems } from "@/utils/projectItems";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import Image from "next/image";
 import Carousel from "react-multi-carousel";
 
 import "react-multi-carousel/lib/styles.css";
@@ -13,24 +14,27 @@ export default function Home() {
 
   const projectsRef = useRef<HTMLDivElement>(null);
 
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+  const responsive = useMemo(
+    () => ({
+      superLargeDesktop: {
+        breakpoint: { max: 4000, min: 3000 },
+        items: 5,
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3,
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2,
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+      },
+    }),
+    []
+  );
 
   function scrollToProjects() {
     projectsRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -39,7 +43,15 @@ export default function Home() {
   return (
     <>
       <header className="flex gap-4 justify-between items-center h-20 fixed top-0 left-0 z-50 w-full default-dark-bg">
-        <h1 className="text-4xl font-extrabold text-blue-50">Jrneryr</h1>
+        <Image
+          src="/logo-white.png"
+          alt="Logo"
+          width={200}
+          height={100}
+          className="cursor-pointer"
+          onClick={scrollToProjects}
+        />
+
         <span
           className="text-blue-50 cursor-pointer personal-hover transition"
           onClick={() => setIsModalOpen(true)}
@@ -67,12 +79,7 @@ export default function Home() {
 
             <p className="text-blue-50 font-light text-xl tracking-[2px] mt-12">
               Venha ver o que ando{" "}
-              <span
-                className="opacity-50 personal-hover transition cursor-pointer"
-                onClick={scrollToProjects}
-              >
-                fazendo atualmente ⟶
-              </span>
+              <span className="opacity-50">fazendo atualmente ⟶</span>
             </p>
           </section>
 
@@ -85,11 +92,15 @@ export default function Home() {
               .map((_, i) => (
                 <div
                   key={i}
-                  className="w-full bg-cover bg-center h-64 md:h-96 rounded-lg shadow-lg"
-                  style={{
-                    backgroundImage: `url(https://placehold.co/600x400)`,
-                  }}
-                />
+                  className="w-[695px] rounded-lg shadow-lg overflow-hidden"
+                >
+                  <video
+                    src="/videos/me-working-desktop-format.mp4"
+                    autoPlay
+                    loop
+                    muted
+                  />
+                </div>
               ))}
           </section>
 
@@ -122,12 +133,7 @@ export default function Home() {
 
             <p className="text-blue-50 font-light text-xl tracking-[2px] mt-12">
               Algumas coisas nas quais{" "}
-              <a
-                className="opacity-50 personal-hover transition-opacity"
-                href="#projects"
-              >
-                estou envolvido ⟶
-              </a>
+              <span className="opacity-50">estou envolvido ⟶</span>
             </p>
 
             <Carousel
@@ -137,6 +143,7 @@ export default function Home() {
               autoPlaySpeed={3500}
               transitionDuration={500}
               arrows={false}
+              className="pb-32"
             >
               {projectItems.map((item) => (
                 <CardProject
@@ -150,7 +157,42 @@ export default function Home() {
             </Carousel>
           </section>
         </div>
+
+        <div className="default-light-bg ">
+          <section
+            id="participations"
+            className="pt-20 h-fit flex flex-col gap-10"
+          >
+            <h3 className="font-light text-[30px]">Participações</h3>
+          </section>
+
+          <section
+            id="final_considerations"
+            className="pt-20 h-fit flex flex-col gap-10"
+          >
+            <div className="flex gap-8 justify-center opacity-50 font-bold">
+              <a href="https://www.linkedin.com/in/junior-neryr-javascript/">
+                LINKEDIN
+              </a>
+              <a href="https://github.com/jrneryr">GITHUB</a>
+            </div>
+
+            <div className="flex gap-8 justify-center text-center opacity-50">
+              Especialista em desenvolvimento de interfaces modernas,
+              responsivas e de alto desempenho, apaixonado por criar
+              experiências digitais incríveis <br />
+              transformando ideias em código e designs em interações fluidas.
+            </div>
+
+            <div className="flex justify-center text-center pb-64">
+              © {new Date().getUTCFullYear()} Junior Neryr. Todos os direitos
+              reservados. <br />
+              Desenvolvido por mim.
+            </div>
+          </section>
+        </div>
       </main>
+
       <footer className="flex flex-col gap-4"></footer>
 
       <ModalAboutMe
