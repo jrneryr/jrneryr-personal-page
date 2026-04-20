@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Ubuntu } from "next/font/google";
 import { ReactNode } from "react";
 import "./globals.css";
+import "react-multi-carousel/lib/styles.css";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
